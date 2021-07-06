@@ -1,24 +1,31 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { Fragment, useState } from "react";
+import Header from "./components/Header";
+import Footer from "./components/Footer";
+import Product from "./components/Product";
 
 function App() {
+
+  const [products, setProducts] = useState([
+    { id: 1, name: "producto 1", price: 1 },
+    { id: 2, name: "producto 2", price: 2 },
+    { id: 3, name: "producto 3", price: 3 },
+  ]);
+
+  const date = new Date().getFullYear();
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Fragment>
+      <Header title="Amaxon" />
+
+      {products.map(product => (
+        <Product
+          key={product.id}
+          product={product}
+        />
+      ))}
+
+      <Footer date={date} />
+    </Fragment>
   );
 }
 
